@@ -1,0 +1,182 @@
+db.a-general-1x1,287100
+db.a-general-1x2,415800
+db.a-general-2x4,831600
+db.a-general-4x8,1663200
+db.a-general-8x16,3326400
+db.a-general-12x24,4989600
+db.a1-standard-2x8,1346400
+db.a1-standard-4x16,2692800
+db.a1-standard-8x32,5385600
+db.a1-standard-16x64,10771200
+db.a1-standard-32x128,21542400
+db.a1-standard-48x192,32472000
+db.a1-highmem-2x16,2376000
+db.a1-highmem-4x32,4752000
+db.a1-highmem-8x64,9504000
+db.a1-highmem-16x128,19008000
+db.a1-highmem-32x256,38016000
+db.a1-highmem-48x384,57024000
+db.a1-highcpu-2x2,574200
+db.a1-highcpu-4x4,1148400
+db.a1-highcpu-8x8,2296800
+db.a1-highcpu-16x16,4593600
+db.s-general-1x1,319000
+db.s-general-1x2,462000
+db.s-general-2x4,924000
+db.s-general-4x8,1848000
+db.s-general-8x16,3696000
+db.s1-standard-2x8,1496000
+db.s1-standard-4x16,2992000
+db.s1-standard-8x32,5984000
+db.s1-standard-16x64,11968000
+db.s1-standard-32x128,23936000
+db.s1-highmem-2x16,2640000
+db.s1-highmem-4x32,5280000
+db.s1-highmem-8x64,10560000
+db.s1-highmem-16x128,21120000
+db.s1-highmem-32x256,42240000
+db.s1-highcpu-2x2,638000
+db.s1-highcpu-4x4,1276000
+db.s1-highcpu-8x8,2552000
+v1.small4x6.b100,883300
+v2.small4x8.b100,1107920
+v2.large24x64.b100,8458560
+v2.large48x256.b100,33063360
+db.v1.small1x2.b100,462000
+db.v1.small2x4.b100,924000
+db.v1.small2x8.b100,1496000
+db.v1.medium4x8.b100,1848000
+db.v1.medium4x16.b100,2992000
+db.v1.medium8x16.b100,3696000
+db.v1.medium8x24.b100,4840000
+db.v1.large16x32.b100,7392000
+db.v1.large16x64.b100,11968000
+db.v1.large24x64.b100,13376000
+db.v1.small1x2.b100,462000
+db.v1.small2x4.b100,924000
+db.v1.medium4x8.b100,1848000
+db.v1.medium4x16.b100,2992000
+db.v1.medium8x24.b100,4840000
+db.v1.large16x32.b100,7392000
+db.v1.large24x64.b100,13376000
+db.v2.small2x2.b100,855800
+db.v2.small2x4.b100,1205600
+db.v2.small2x8.b100,1905200
+db.v2.medium4x8.b100,2411200
+db.v2.medium4x16.b100,3810400
+db.v2.medium8x16.b100,4822400
+db.v2.medium8x32.b100,7620800
+db.v2.large16x32.b100,9644800
+db.v2.large16x64.b100,15241600
+db.v2.large32x64.b100,19289600
+db.v2.large32x96.b100,24886400
+db.v2.large16x128.b100,26435200
+db.v2.large32x128.b100,30483200
+db.v2.xlarge48x192.b100,45724800
+db.v2.xlarge48x256.b100,56918400
+db.v2.small2x2.b100,855800
+db.v2.small2x4.b100,1205600
+db.v2.small2x8.b100,1905200
+db.v2.medium4x8.b100,2411200
+db.v2.medium4x16.b100,3810400
+db.v2.medium8x32.b100,7620800
+db.v2.large16x64.b100,15241600
+db.v2.large16x128.b100,26435200
+db.v2.xlarge48x192.b100,45724800
+db.v2.xlarge48x256.b100,56918400
+g3.large16x192.C4.b100,32365520
+g3.large8x192.C4.b100,31427440
+g3.large42x128.C8.b100,43335820
+g3.large24x128.C4.b100,27683920
+Package Mini,440000
+Package Premium,880000
+Package Enterprise50 Active/Stanby,8800000
+Package Mini Active/Stanby,880000
+Package Premium Active/Stanby,1760000
+SSD-IOPS200,6930
+SSD-IOPS400,11000
+SSD-IOPS800,12980
+SSD-IOPS1000,14080
+SSD-IOPS1200,14960
+SSD-IOPS1600,16940
+SSD-IOPS3200,21120
+SSD-IOPS2-3000,7040
+SSD-IOPS200,3267
+SSD-IOPS400,4400
+SSD-IOPS800,5192
+SSD-IOPS1000,5632
+SSD-IOPS1200,5984
+SSD-IOPS1600,6776
+SSD-IOPS3200,8448
+SSD-IOPS6400,11968
+SSD-IOPS10000,16016
+SSD-IOPS2-3000,3520
+SSD-IOPS-Share,3300
+SSD-IOPS-VNG,8448
+Customize-Backup Quota,1551
+Customize-Backup Usage,440
+Package 1,486200
+Package 2,1215500
+Package 3,2489344
+Package 4,4978688
+Package 5,6440896
+db.backup.quota.100GB,149600
+db.backup.quota.200GB,299200
+db.backup.quota.500GB,748000
+db.backup.quota.1TB,1126400
+db.backup.quota.2TB,2252800
+S-DataTransfer-Postpaid,1100
+D-DataTransfer-Postpaid,220
+QT1-1000,550000
+QT2-2000,1100000
+QT3-3000,1
+QT4-4000,1
+TN1-10000,1
+TN2-15000,1
+TN3-20000,1
+Shared,1
+Dedicated-QT-2Mbps,1
+Dedicated-QT-5Mbps,1
+Dedicated-QT-10Mbps,1
+Dedicated-QT-20Mbps,1
+Dedicated-QT-50Mbps,1
+Dedicated-TN-100Mbps,1
+Dedicated-TN-200Mbps,1
+Dedicated-TN-500Mbps,1
+Dedicated-TN-1000Mbps,1
+Dedicated-TN-2000Mbps,1
+IPv4,1
+IPv4-std-01,1
+IPv4-std-02,1
+Interconnect -1Gpbs,1
+Interconnect -10Gpbs,1
+AWS-Hybrid-DX-10Mbps,1
+AWS-Hybrid-DX-50Mbps,1
+AWS-Hybrid-DX-100Mbps,1
+AWS-Hybrid-DX-200Mbps,1
+AWS-Hybrid-DX-trên 200Mbps,1
+Setup port kết nối,1
+3rd-Window-License,1
+3rd-vCF-VSRX-100M-STD-1,1
+3rd-vCF-VSRX-100M-ATP-B-1,1
+3rd-vCF-VSRX-100M-CS-1,1
+3rd-vCF-VSRX-1G-STD-1,1
+3rd-vCF-VSRX-1G-ATP-B-1,1
+3rd-vCF-VSRX-1G-CS-1,1
+3rd-vCF-VSRX-RA1-10-1,1
+3rd-vCF-VSRX-RA1-100-1,1
+3rd-vCF-VSRX-RA1-150-1,1
+3rd-vCF-VSRX-ClientNCPWindow,1
+3rd-SDW-Cloud-FusionHub - License,1
+3rd-SDW-SDWAN-Surf SOHO,1
+3rd-SDW-SDWAN-20,1
+3rd-SDW-SDWAN- ONE CORE,1
+3rd-SDW-SDWAN- TWO,1
+3rd-SDW-SDWAN- 20X,1
+3rd-SDW-SDWAN-BR1-MINI,1
+3rd-SDW-SDWAN-TST-MINI,1
+3rd-SDW-SDWAN-UBR LTE,1
+3rd-SDW-SDWAN-310X,1
+3rd-SDW-SDWAN-380X,1
+3rd-SDW-SDWAN-580X,1
+3rd-SDW-SDWAN-SDX,1

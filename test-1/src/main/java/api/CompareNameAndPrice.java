@@ -6,11 +6,11 @@ import object.Flavor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class CompareNameAndPrice {
 
@@ -22,7 +22,7 @@ public class CompareNameAndPrice {
         header.put("accept", "application/json, text/plain, */*");
         header.put("accept-language", "en-US,en;q=0.9");
         header.put("cache-control", "no-cache");
-        header.put("cookie", "SESSION=9810fae1-2e46-4e63-a42e-f5ebcc16437f");
+        header.put("cookie", "SESSION=37935a31-70b3-4e94-b355-ec549a0820fb");
         header.put("pragma", "no-cache");
         header.put("referer", "https://portal3.vngcloud.vn/servers/create.html");
         header.put("sec-ch-ua", "\" Not;A Brand\";v=\"99\", \"Microsoft Edge\";v=\"103\", \"Chromium\";v=\"103\"");
@@ -106,24 +106,88 @@ public class CompareNameAndPrice {
         return list;
     }
 
+    public static List<Flavor> convertCsvData2(List<String> data) {
+        List<Flavor> list = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            //split semi-colon from data items
+            List<String> items = Arrays.asList(data.get(i).split("\\s*,\\s*"));
+
+            Flavor flavor = new Flavor();
+
+//            String myName = removeAllSpaceAndSpecialCharacterInString(items.get(0));
+            flavor.setName(items.get(0));
+
+            if (items.size() == 2) {
+                flavor.setPrice(Integer.parseInt(items.get(1)));
+//                if (checkStringHasSpecialCharacter(items.get(1)) == true) {
+//                    String kept = items.get(1).substring( 0, items.get(1).indexOf("."));
+//                    flavor.setPrice(Integer.parseInt(kept));
+//                } else {
+//                    flavor.setPrice(Integer.parseInt(items.get(1)));
+//                }
+            } else if (items.size() == 1){
+                flavor.setPrice(1);
+            }
+
+            list.add(flavor);
+        }
+
+        return list;
+    }
+
     public static void compareList(List<Flavor> listFlavorApiData, List<Flavor> listFlavorCsvData) {
         for (int i = 0; i < listFlavorApiData.size(); i++) {
 
             for (int j = 0; j < listFlavorCsvData.size(); j++) {
 
-                if (listFlavorApiData.get(i).getName().equals(listFlavorCsvData.get(j).getName()) &&
+                String temp1 = removeAllSpaceAndSpecialCharacterInString(listFlavorApiData.get(i).getName()).toLowerCase();
+                String temp2 = removeAllSpaceAndSpecialCharacterInString(listFlavorCsvData.get(j).getName()).toLowerCase();
+
+                if (temp1.equals(temp2) &&
                         listFlavorApiData.get(i).getPrice().equals(listFlavorCsvData.get(j).getPrice())) {
 
                     listFlavorApiData.remove(i);
-                    listFlavorCsvData.remove(i);
-                    j--;
-
+                    j = 0;
+                    i = 0;
                 }
             }
-
-            if (listFlavorCsvData.size() == 0)
-                break;
         }
+    }
+
+    public static List<Flavor> compareList2(List<Flavor> listFlavorApiData, List<Flavor> listFlavorCsvData2) {
+        List<Flavor> listFlavorTemp = new ArrayList<>();
+        for (Flavor emp : listFlavorApiData) {
+            boolean found = false;
+            for (Flavor tgtEmp : listFlavorCsvData2) {
+                if ((removeAllSpaceAndSpecialCharacterInString(emp.getName().toLowerCase()).equals(removeAllSpaceAndSpecialCharacterInString(tgtEmp.getName().toLowerCase()))) && (emp.getPrice().equals(tgtEmp.getPrice()))) {
+                    found =true;
+                    break;
+                }
+            }
+            if(!found){
+                listFlavorTemp.add(emp);
+            }
+        }
+
+        return listFlavorTemp;
+    }
+
+    public static List<Flavor> compareList3(List<Flavor> listFlavorApiData, List<Flavor> listFlavorCsvData2) {
+        List<Flavor> listFlavorTemp = new ArrayList<>();
+        for (Flavor emp : listFlavorCsvData2) {
+            boolean found = false;
+            for (Flavor tgtEmp : listFlavorApiData) {
+                if ((removeAllSpaceAndSpecialCharacterInString(emp.getName().toLowerCase()).equals(removeAllSpaceAndSpecialCharacterInString(tgtEmp.getName().toLowerCase()))) && (emp.getPrice().equals(tgtEmp.getPrice()))) {
+                    found =true;
+                    break;
+                }
+            }
+            if(!found){
+                listFlavorTemp.add(emp);
+            }
+        }
+
+        return listFlavorTemp;
     }
 
     public static void writeFileCsv(List<Flavor> listFlavorApiData, List<Flavor> listFlavorCsvData) {
@@ -211,21 +275,107 @@ public class CompareNameAndPrice {
         }
     }
 
+    public static void writeFileCsv2(List<Flavor> listFlavorApiData) {
+        try {
+            PrintWriter writerApiData = new PrintWriter("listApiData.csv");
+            List<String> listName = new ArrayList<>();
+            List<String> listPrice = new ArrayList<>();
+            List<String> listData = new ArrayList<>();
+
+            for (Flavor flavor : listFlavorApiData) {
+                listName.add(flavor.getName());
+                listPrice.add(flavor.getPrice().toString());
+            }
+
+            for (int i = 0; i < listFlavorApiData.size(); i++) {
+                listData.add(i,  listName.get(i) + "," + listPrice.get(i));
+            }
+
+            for (String sample : listData) {
+                writerApiData.println(sample);
+            }
+
+            writerApiData.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void writeFileCsv3(List<Flavor> listFlavorApiData) {
+        try {
+            PrintWriter writerApiData = new PrintWriter("listCsvData.csv");
+            List<String> listName = new ArrayList<>();
+            List<String> listPrice = new ArrayList<>();
+            List<String> listData = new ArrayList<>();
+
+            for (Flavor flavor : listFlavorApiData) {
+                listName.add(flavor.getName());
+                listPrice.add(flavor.getPrice().toString());
+            }
+
+            for (int i = 0; i < listFlavorApiData.size(); i++) {
+                listData.add(i,  listName.get(i) + "," + listPrice.get(i));
+            }
+
+            for (String sample : listData) {
+                writerApiData.println(sample);
+            }
+
+            writerApiData.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public static String removeAllSpaceAndSpecialCharacterInString(String data) {
+        char[] strArray = data.toCharArray();
+
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < strArray.length; i++) {
+            if ((strArray[i] != ' ') && (strArray[i] != '\t')) {
+                stringBuffer.append(strArray[i]);
+            }
+        }
+
+        String noSpaceStr = stringBuffer.toString();
+        String newString = noSpaceStr.replaceAll("[^a-zA-Z0-9]", "");
+        return newString;
+    }
+
+    public static boolean checkStringHasSpecialCharacter(String string) {
+        Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(string);
+        boolean b = m.find();
+
+        if (b) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
         String data = getDataFromApi();
 
         //get data from file csv, CHANGE LOCATION WHEN TEST
-        String location = "C:\\\\Users\\\\LAP14593-local\\\\Desktop\\\\Book1.csv";
+        String location = "C:\\\\Users\\\\LAP14593-local\\\\Desktop\\\\file-csv.csv";
         List<String> dataFileCsv = readFileCsv(location);
 
         //convert data api and data csv file to list object
         List<Flavor> listFlavorApiData = convertApiData(data);
-        List<Flavor> listFlavorCsvData = convertCsvData(dataFileCsv);
+        System.out.println(listFlavorApiData.size());
+//        List<Flavor> listFlavorCsvData = convertCsvData(dataFileCsv);
+        List<Flavor> listFlavorCsvData2 = convertCsvData2(dataFileCsv);
+        System.out.println(listFlavorCsvData2.size());
 
         //compare data api and data csv file
-        compareList(listFlavorApiData, listFlavorCsvData);
+        List<Flavor> newListFlavor = compareList2(listFlavorApiData, listFlavorCsvData2);
+        List<Flavor> newListFlavor2 = compareList3(listFlavorApiData, listFlavorCsvData2);
 
-        //write to new file csv after compare
-        writeFileCsv(listFlavorApiData, listFlavorCsvData);
+        //write to file csv
+        writeFileCsv2(newListFlavor);
+        writeFileCsv3(newListFlavor2);
+
+        System.out.println(newListFlavor2.size());
+        System.out.println(newListFlavor.size());
     }
 }
